@@ -3,10 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useCurrency } from '../components/CurrencyContext';
 import Slider from 'react-slick';
-import Lightbox from 'react-image-lightbox';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import 'react-image-lightbox/style.css';
 
 const PropertyDetail = () => {
   const { id } = useParams();
@@ -81,23 +79,7 @@ const PropertyDetail = () => {
               </div>
             ))}
           </Slider>
-          <div className="image-counter">
-            {currentSlide} / {imagesToShow.length}
-          </div>
-          {isOpen && (
-            <Lightbox
-              mainSrc={imagesToShow[photoIndex]}
-              nextSrc={imagesToShow[(photoIndex + 1) % imagesToShow.length]}
-              prevSrc={imagesToShow[(photoIndex + imagesToShow.length - 1) % imagesToShow.length]}
-              onCloseRequest={() => setIsOpen(false)}
-              onMovePrevRequest={() =>
-                setPhotoIndex((photoIndex + imagesToShow.length - 1) % imagesToShow.length)
-              }
-              onMoveNextRequest={() =>
-                setPhotoIndex((photoIndex + 1) % imagesToShow.length)
-              }
-            />
-          )}
+         
         </div>
       ) : (
         <p>No images available</p>
