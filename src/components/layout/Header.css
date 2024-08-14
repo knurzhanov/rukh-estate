@@ -1,0 +1,170 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border-bottom: 1px solid lightgray;
+  }
+  
+  .logo h1 {
+    margin: 0;
+  }
+  
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 3px 0;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px;
+    background-color: white;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 1px 1px 30px -20px;
+    overflow: auto;
+  }
+  
+  .nav-menu.open {
+    transform: translateX(0);
+    z-index: 1;
+  }
+  
+  .nav-menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .nav-menu ul li {
+    padding: 15px 20px;
+  }
+  
+  .nav-menu ul li a {
+    color: black;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .nav-menu ul li a:hover {
+    color:#4CAF50;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000; /* Цвет можно поменять на подходящий */
+  }
+  
+  .close-btn:hover {
+    color: #f00; /* Измените цвет при наведении, если нужно */
+  }
+  .property-detail {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .image-slider {
+    position: relative;
+  }
+  
+  .image-slider img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .image-counter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 12px;
+    height: 15px;
+    font-size: 14px;
+  }
+  
+  .property-header {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .property-location p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .property-description {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .property-description h3 {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .property-description p {
+    font-size: 16px;
+    color: #444;
+  }
+  
+  .whatsapp-button {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .whatsapp-button a {
+    display: inline-block;
+    background-color: #25D366;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+  }
+  
+  .whatsapp-button a:hover {
+    background-color: #1ebe57;
+  }
+  .slick-list{
+    height: 210px;
+  }
+  .slick-list img{
+    max-width: 100%;
+    height: 210px!important;
+    object-fit: cover;
+    cursor: pointer;
+  }

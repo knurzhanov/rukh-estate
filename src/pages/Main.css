@@ -1,0 +1,30 @@
+
+.grid-property{
+    margin-top: 40px!important;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 60px;
+}
+
+.property img{
+    width: 100%!important;
+}
+
+.property-title{
+    font-size: 18px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+}
+
+.price-btn {
+    display: flex;
+    justify-content: space-between;
+   
+}
+.price-btn button{
+    margin-top: 15px;
+    background: none;
+    border: none;
+    color: green;
+    text-decoration: underline;
+}
