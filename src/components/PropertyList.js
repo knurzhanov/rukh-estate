@@ -18,7 +18,7 @@ const PropertyList = ({ roomCount }) => {
 
         console.log('Fetching properties with params:', params)
 
-        const response = await axios.get('http://localhost:5000/properties', {
+        const response = await axios.get('https://rukh-estate-api-5571379c698a.herokuapp.com/properties', {
           params,
         })
 
