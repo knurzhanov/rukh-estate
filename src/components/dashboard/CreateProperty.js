@@ -141,7 +141,7 @@ const CreateProperty = () => {
     try {
       console.log('Data to be sent:', data);
 
-      await axios.post('http://localhost:5000/add-product', data, {
+      await axios.post('https://rukh-estate-api-5571379c698a.herokuapp.com/add-product', data, {
         headers: {
           'Content-Type': 'application/json',
           // передаем токен в заголовке
