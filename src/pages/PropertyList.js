@@ -10,9 +10,11 @@ const PropertyList = () => {
   const location = useLocation();
   const { roomCount } = queryString.parse(location.search);
   const [properties, setProperties] = useState([]);
+  const [sortedProperties, setSortedProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [conversionRates, setConversionRates] = useState({ KZT: 1 });
+  const [sortOrder, setSortOrder] = useState('asc'); // 'asc' for ascending, 'desc' for descending
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -25,7 +27,6 @@ const PropertyList = () => {
         });
 
         if (Array.isArray(response.data)) {
-          // Фильтрация по количеству комнат, если roomCount больше 5
           const filteredProperties = Number(roomCount) >= 5
             ? response.data.filter(property => property.roomCount >= 5)
             : response.data;
@@ -58,7 +59,25 @@ const PropertyList = () => {
     }
 
     fetchConversionRates();
-  }, [roomCount, currency]); // Добавлен `currency` в зависимости для обновления курсов валют
+  }, [roomCount, currency]);
+
+  useEffect(() => {
+    const sortProperties = () => {
+      const sorted = [...properties].sort((a, b) => {
+        const priceA = parseFloat(a.price.replace(/[^0-9.]/g, '')) || 0;
+        const priceB = parseFloat(b.price.replace(/[^0-9.]/g, '')) || 0;
+
+        if (sortOrder === 'asc') {
+          return priceA - priceB;
+        } else {
+          return priceB - priceA;
+        }
+      });
+      setSortedProperties(sorted);
+    };
+
+    sortProperties();
+  }, [properties, sortOrder]);
 
   const convertPrice = (price) => {
     const numericPrice = parseFloat(price.replace(/[^0-9.]/g, ''));
@@ -72,52 +91,63 @@ const PropertyList = () => {
     return convertedPrice;
   };
 
+  const handleSortChange = (e) => {
+    setSortOrder(e.target.value);
+  };
+
   return (
     <div>
       <div className='container'>
-      <h1>Список недвижимости</h1>
-
-      <div>
-        <label htmlFor="currency">Выберите валюту:</label>
-        <select id="currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
-          <option value="KZT">KZT</option>
-          <option value="USD">USD</option>
-          <option value="EUR">EUR</option>
-          <option value="RUB">RUB</option>
-        </select>
-      </div>
+        <h1>Список недвижимости</h1>
+        <div className='filter-flex'>
+          <div>
+            <label htmlFor="currency">Выберите валюту:</label>
+            <select id="currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
+              <option value="KZT">KZT</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="RUB">RUB</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="sort">Сортировка цен:</label>
+            <select id="sort" value={sortOrder} onChange={handleSortChange}>
+              <option value="asc">по возрастанию</option>
+              <option value="desc">по убыванию</option>
+            </select>
+          </div>
+        </div>
       </div>
       <div className='grid-property container'>
-      {loading ? (
-        <p>Загрузка...</p>
-      ) : error ? (
-        <p style={{ color: 'red' }}>{error}</p>
-      ) : properties.length > 0 ? (
-        properties.map((property) => (
-          <div className='property'  key={property._id} style={{ marginBottom: '20px' }}>
-            {property.images && property.images.length > 0 ? (
-              <img
-                src={property.images[1]}
-                alt={property.title}
-                style={{ width: '150px', height: 'auto' }}
-              />
-            ) : (
-              <p>Нет фото</p>
-            )}
-            <h2 className='property-title'>{property.title}</h2>
-            <div className='price-btn'>
-            <p>
-              Цена: {convertPrice(property.price)} {currency}
-            </p>
-            <Link to={`/properties/${property._id}`}>
-              <button>Подробнее</button>
-            </Link>
+        {loading ? (
+          <p>Загрузка...</p>
+        ) : error ? (
+          <p style={{ color: 'red' }}>{error}</p>
+        ) : sortedProperties.length > 0 ? (
+          sortedProperties.map((property) => (
+            <div className='property' key={property._id} style={{ marginBottom: '20px' }}>
+              {property.images && property.images.length > 0 ? (
+                <img
+                  src={property.images[1]}
+                  alt={property.title}
+                />
+              ) : (
+                <p>Нет фото</p>
+              )}
+              <h2 className='property-title'>{property.title}</h2>
+              <div className='price-btn'>
+                <p>
+                  Цена: {convertPrice(property.price)} {currency}
+                </p>
+                <Link to={`/properties/${property._id}`}>
+                  <button>Подробнее</button>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))
-      ) : (
-        <p>Нет доступных квартир для выбранного количества комнат.</p>
-      )}
+          ))
+        ) : (
+          <p>Нет доступных квартир для выбранного количества комнат.</p>
+        )}
       </div>
     </div>
   );

@@ -86,7 +86,7 @@ border-radius: 6px;
   /* Button */
 
 
-background: #26B50F;
+background: #13588B;
 /* Light/Gray/Gray - SM */
 box-shadow: 0px 2px 4px rgba(165, 163, 174, 0.3);
 border-radius: 8px;
@@ -95,17 +95,13 @@ border-radius: 8px;
 }
 
 .auth-btn:hover {
-  background-color: #218838;
+  background-color: #13588B;
 }
 
 .main-login__container{
   width: 400px;
     height: 386px;
     margin-top: 52px;
-    /* border: 1px solid lightgray; */
-    background-color: white;
-    border-radius: 27px;
-    box-shadow: 1px 1px 25px -18px;
 }
 
 /*Property Listing*/

@@ -28,3 +28,24 @@
     color: green;
     text-decoration: underline;
 }
+select#currency{
+    margin-left: 10px;
+    border: none;
+    background-color: #efefef;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+select#sort{
+    margin-left: 10px;
+    border: none;
+    background-color: #efefef;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+.grid-property .property img{
+    object-fit: cover;
+    height: 180px;
+}
+.filter-flex{
+    display: flex;
+}
