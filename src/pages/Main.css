@@ -72,4 +72,12 @@ select#sort{
     .sort-label{
         float: right;
     }
+    .property-title{
+        color: #13588B;
+        text-decoration: underline;
+    }
+    .price-btn{
+        font-size: 18px;
+        font-weight: 700;
+    }
 }

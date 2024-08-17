@@ -126,6 +126,16 @@ const PropertyList = () => {
         ) : sortedProperties.length > 0 ? (
           sortedProperties.map((property) => (
             <div className='property' key={property._id} style={{ marginBottom: '20px' }}>
+              <div className='price-btn'>
+                <p>
+                  Цена: {convertPrice(property.price)} {currency}
+                </p>
+                
+              </div>
+              <Link to={`/properties/${property._id}`}>
+              <h2 className='property-title'>{property.title}</h2>
+              </Link>
+              
               {property.images && property.images.length > 0 ? (
                 <img
                   src={property.images[1]}
@@ -134,15 +144,6 @@ const PropertyList = () => {
               ) : (
                 <p>Нет фото</p>
               )}
-              <h2 className='property-title'>{property.title}</h2>
-              <div className='price-btn'>
-                <p>
-                  Цена: {convertPrice(property.price)} {currency}
-                </p>
-                <Link to={`/properties/${property._id}`}>
-                  <button>Подробнее</button>
-                </Link>
-              </div>
             </div>
           ))
         ) : (
