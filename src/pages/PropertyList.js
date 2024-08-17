@@ -110,7 +110,7 @@ const PropertyList = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="sort">Сортировка цен:</label>
+            <label className='sort-label' htmlFor="sort">Сортировка цен:</label>
             <select id="sort" value={sortOrder} onChange={handleSortChange}>
               <option value="asc">по возрастанию</option>
               <option value="desc">по убыванию</option>

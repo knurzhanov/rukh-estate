@@ -59,4 +59,17 @@ select#sort{
         padding-left: 15px;
         font-size: 26px;
     }
+    select#currency {
+        margin-left: 0px;
+    }
+    select#sold {
+        float: right;
+    }
+    .filter-flex{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .sort-label{
+        float: right;
+    }
 }
