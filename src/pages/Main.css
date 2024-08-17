@@ -30,6 +30,7 @@
 }
 select#currency{
     margin-left: 10px;
+    color: black;
     border: none;
     background-color: #efefef;
     padding: 3px 6px;
@@ -39,6 +40,7 @@ select#sort{
     margin-left: 10px;
     border: none;
     background-color: #efefef;
+    color: black;
     padding: 3px 6px;
     border-radius: 5px;
 }
@@ -60,10 +62,14 @@ select#sort{
         font-size: 26px;
     }
     select#currency {
+        color: #000;
         margin-left: 0px;
+        font-size: 20px;
     }
     select#sort {
+        color: #000;
         float: right;
+        font-size: 20px;
     }
     .filter-flex{
         padding-left: 15px;
@@ -82,9 +88,9 @@ select#sort{
         font-weight: 700;
     }
     .property-title{
-  
         font-size: 18px;
         margin-top: 0px;
         margin-bottom: 0px;
     }
+    
 }
