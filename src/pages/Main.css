@@ -62,7 +62,7 @@ select#sort{
     select#currency {
         margin-left: 0px;
     }
-    select#sold {
+    select#sort {
         float: right;
     }
     .filter-flex{
