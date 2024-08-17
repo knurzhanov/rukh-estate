@@ -146,7 +146,6 @@ const PropertyList = () => {
                 </p>
                 
               </div>
-              <hr></hr>
             </div>
             
           ))
