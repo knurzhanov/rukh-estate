@@ -49,3 +49,14 @@ select#sort{
 .filter-flex{
     display: flex;
 }
+@media screen and (max-width: 600px) {
+    .grid-property{
+        grid-template-columns: 1fr;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .propertyList-title{
+        padding-left: 15px;
+        font-size: 26px;
+    }
+}

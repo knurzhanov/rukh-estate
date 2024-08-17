@@ -24,6 +24,7 @@ const FormGroup = styled.div`
 const Label = styled.label`
   text-align: left;
   font-size: 24px;
+  color: black;
   font-weight: 600;
   float: left;
 `

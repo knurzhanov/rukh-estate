@@ -98,7 +98,7 @@ const PropertyList = () => {
   return (
     <div>
       <div className='container'>
-        <h1>Список недвижимости</h1>
+        <h1 className='propertyList-title'>Список недвижимости</h1>
         <div className='filter-flex'>
           <div>
             <label htmlFor="currency">Выберите валюту:</label>
