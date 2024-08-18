@@ -5,7 +5,8 @@ import { useCurrency } from '../components/CurrencyContext';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import ModalImage from 'react-modal-image';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 
 const PropertyDetail = () => {
   const { id } = useParams();
@@ -14,6 +15,8 @@ const PropertyDetail = () => {
   const [error, setError] = useState('');
   const [conversionRate, setConversionRate] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   useEffect(() => {
     const fetchProperty = async () => {
@@ -58,6 +61,7 @@ const PropertyDetail = () => {
     slidesToScroll: 1,
     adaptiveHeight: false,
     beforeChange: (current, next) => setCurrentSlide(next + 1),
+    afterChange: (current) => setPhotoIndex(current),
   };
 
   const whatsappMessage = `Я выбрал это: ${window.location.href}`;
@@ -71,11 +75,14 @@ const PropertyDetail = () => {
           </div>
           <Slider {...settings}>
             {imagesToShow.map((src, index) => (
-              <div key={index}>
-                <ModalImage
-                  small={src}
-                  large={src}
+              <div key={index} onClick={() => {
+                setIsOpen(true);
+                setPhotoIndex(index);
+              }}>
+                <img
+                  src={src}
                   alt={`Property image ${index + 1}`}
+                  style={{ maxWidth: '100%', height: 'auto', cursor: 'pointer' }}
                 />
               </div>
             ))}
@@ -83,6 +90,20 @@ const PropertyDetail = () => {
         </div>
       ) : (
         <p>No images available</p>
+      )}
+      {isOpen && (
+        <Lightbox
+          mainSrc={imagesToShow[photoIndex]}
+          nextSrc={imagesToShow[(photoIndex + 1) % imagesToShow.length]}
+          prevSrc={imagesToShow[(photoIndex + imagesToShow.length - 1) % imagesToShow.length]}
+          onCloseRequest={() => setIsOpen(false)}
+          onMovePrevRequest={() =>
+            setPhotoIndex((photoIndex + imagesToShow.length - 1) % imagesToShow.length)
+          }
+          onMoveNextRequest={() =>
+            setPhotoIndex((photoIndex + 1) % imagesToShow.length)
+          }
+        />
       )}
       <div className="property-header">
         <h2 className="price">{convertPrice(property.price)}/месяц</h2>
