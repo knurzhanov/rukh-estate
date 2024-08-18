@@ -6,6 +6,7 @@ const CurrencyContext = createContext();
 export const CurrencyProvider = ({ children }) => {
   const [currency, setCurrency] = useState('KZT');
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // Добавляем состояние загрузки
 
   useEffect(() => {
     const fetchUserFromLocalStorage = () => {
@@ -18,6 +19,8 @@ export const CurrencyProvider = ({ children }) => {
         }
       } catch (error) {
         console.error('Error fetching user from localStorage:', error);
+      } finally {
+        setIsLoading(false); // Завершаем загрузку
       }
     };
 
@@ -51,7 +54,7 @@ export const CurrencyProvider = ({ children }) => {
   };
 
   return (
-    <CurrencyContext.Provider value={{ currency, setCurrency, user, setUser, loginUser, logoutUser }}>
+    <CurrencyContext.Provider value={{ currency, setCurrency, user, setUser, loginUser, logoutUser, isLoading }}>
       {children}
     </CurrencyContext.Provider>
   );

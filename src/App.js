@@ -10,6 +10,7 @@ import { CurrencyProvider } from './components/CurrencyContext';
 import PropertyListing from './components/dashboard/PropertyListing';
 import PrivateRoute from './components/PrivateRoute';
 import CreateUser from './components/dashboard/CreateUser';
+import EditProperty from './components/dashboard/EditProperty';
 import NonAccess from './components/NonAccess';
 
 function App() {
@@ -31,24 +32,30 @@ function App() {
             </>
           } />
           <Route path="/create" element={
-            <>
+            <PrivateRoute requiredRole="Admin">
               <Header />
               <CreateProperty />
-              </>
+            </PrivateRoute>
           } />
           <Route path="/listing" element={
-           <>
+            <PrivateRoute requiredRole="Admin">
               <Header />
               <PropertyListing />
-              </>
+            </PrivateRoute>
           } />
           <Route path="/select" element={<SelectRoomPage />} />
           <Route path="/create-user" element={
-            <>
+            <PrivateRoute requiredRole="Admin">
               <Header />
               <CreateUser />
-              </>
+            </PrivateRoute>
           } />
+          <Route path="/edit/:id" element={
+            <PrivateRoute requiredRole="Admin">
+            <EditProperty />
+          </PrivateRoute>
+          } />
+
           <Route path="/non-access" element={<NonAccess />} />
         </Routes>
       </Router>

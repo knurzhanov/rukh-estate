@@ -19,6 +19,7 @@ const PropertyDetail = () => {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
+        // const response = await axios.get(`http://localhost:5000/properties/${id}`);
         const response = await axios.get(`https://rukh-estate-api-5571379c698a.herokuapp.com/properties/${id}`);
         setProperty(response.data);
       } catch (error) {

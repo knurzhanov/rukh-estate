@@ -3,14 +3,11 @@ import { Navigate } from 'react-router-dom';
 import { useCurrency } from './CurrencyContext';
 
 const PrivateRoute = ({ children, requiredRole }) => {
-  const { user } = useCurrency();
+  const { user, isLoading } = useCurrency();
 
-  console.log('Пользователь из контекста:', user);
-  console.log('Требуемая роль:', requiredRole);
-
-  if (user === undefined) {
-    // Пока данные о пользователе загружаются, можно вернуть индикатор загрузки или ничего не рендерить
-    return <div>Loading...</div>; // Можно заменить на спиннер или другую индикацию загрузки
+  if (isLoading) {
+    // Пока данные о пользователе загружаются, показываем индикатор загрузки
+    return <div>Loading...</div>;
   }
 
   if (!user) {

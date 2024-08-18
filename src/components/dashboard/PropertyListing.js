@@ -11,6 +11,7 @@ const PropertyListing = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
+        // const response = await axios.get('http://localhost:5000/properties');
         const response = await axios.get('https://rukh-estate-api-5571379c698a.herokuapp.com/properties');
         setProperties(response.data);
       } catch (error) {
@@ -25,6 +26,7 @@ const PropertyListing = () => {
   // Удаление квартиры
   const handleDelete = async (id) => {
     try {
+      // await axios.delete(`http://localhost:5000/properties/${id}`);
       await axios.delete(`https://rukh-estate-api-5571379c698a.herokuapp.com/properties/${id}`);
       setProperties(properties.filter((property) => property._id !== id));
       setSuccess('Квартира успешно удалена!');
