@@ -5,8 +5,6 @@ import { useCurrency } from '../components/CurrencyContext';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Fancybox from 'react-fancybox';
-import '@fancyapps/ui/dist/fancybox/fancybox.css'; 
 
 const PropertyDetail = () => {
   const { id } = useParams();
@@ -73,7 +71,7 @@ const PropertyDetail = () => {
           <Slider {...settings}>
             {imagesToShow.map((src, index) => (
               <div key={index}>
-                <Fancybox>
+               
                   <img
                     src={src}
                     alt={`Property image ${index + 1}`}
@@ -81,7 +79,7 @@ const PropertyDetail = () => {
                     data-fancybox="gallery"
                     data-src={src}
                   />
-                </Fancybox>
+            
               </div>
             ))}
           </Slider>
