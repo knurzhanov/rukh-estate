@@ -90,6 +90,9 @@ const PropertyDetail = () => {
         <div className="property-location">
           <p>{property.roomCount} комнаты • {property.area} м² • помесячно • {property.address}</p>
         </div>
+        <div className="property-location">
+          <p>Название ЖК: {property.homeTitle}</p>
+        </div>
       </div>
       <div className="property-description">
         <h3>Описание</h3>
