@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Fancybox from 'react-fancybox';
-import '@fancyapps/ui/dist/fancybox.css';
+import '@fancyapps/ui/dist/fancybox/fancybox.css'; 
 
 const PropertyDetail = () => {
   const { id } = useParams();
