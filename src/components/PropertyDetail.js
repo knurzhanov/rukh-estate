@@ -69,6 +69,9 @@ const PropertyDetail = () => {
     <div className="property-detail">
       {imagesToShow.length > 0 ? (
         <div className="image-slider">
+          <div className="photo-counter">
+            {currentSlide}/{imagesToShow.length}
+          </div>
           <Slider {...settings}>
             {imagesToShow.map((src, index) => (
               <div key={index} onClick={() => setIsOpen(true)}>
@@ -80,7 +83,6 @@ const PropertyDetail = () => {
               </div>
             ))}
           </Slider>
-         
         </div>
       ) : (
         <p>No images available</p>
