@@ -78,7 +78,7 @@ const CreateProperty = () => {
         }
         
         // Используем функцию и записываем результат в переменную
-        const homeTitle = getComplexName().trim() || '';
+        const homeTitle = getComplexName();
 
       const descriptionHtml =
         doc.querySelector('.js-description.a-text.a-text-white-spaces')
