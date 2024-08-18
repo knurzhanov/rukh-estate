@@ -12,6 +12,7 @@ const CreateProperty = () => {
     totalFloors: '',
     address: '',
     price: '',
+    homeTitle: '',
     square: '',
     description: '',
     images: [],
@@ -67,6 +68,7 @@ const CreateProperty = () => {
         title,
         price,
         square,
+        homeTitle,
         descriptionHtml,
         images,
       });
