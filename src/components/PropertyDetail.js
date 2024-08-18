@@ -5,6 +5,7 @@ import { useCurrency } from '../components/CurrencyContext';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import ModalImage from 'react-modal-image';
 
 const PropertyDetail = () => {
   const { id } = useParams();
@@ -13,13 +14,10 @@ const PropertyDetail = () => {
   const [error, setError] = useState('');
   const [conversionRate, setConversionRate] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(1);
-  const [isOpen, setIsOpen] = useState(false);
-  const [photoIndex, setPhotoIndex] = useState(0);
 
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        // const response = await axios.get(`http://localhost:5000/properties/${id}`);
         const response = await axios.get(`https://rukh-estate-api-5571379c698a.herokuapp.com/properties/${id}`);
         setProperty(response.data);
       } catch (error) {
@@ -60,7 +58,6 @@ const PropertyDetail = () => {
     slidesToScroll: 1,
     adaptiveHeight: false,
     beforeChange: (current, next) => setCurrentSlide(next + 1),
-    afterChange: (current) => setPhotoIndex(current),
   };
 
   const whatsappMessage = `Я выбрал это: ${window.location.href}`;
@@ -74,11 +71,11 @@ const PropertyDetail = () => {
           </div>
           <Slider {...settings}>
             {imagesToShow.map((src, index) => (
-              <div key={index} onClick={() => setIsOpen(true)}>
-                <img
-                  src={src}
+              <div key={index}>
+                <ModalImage
+                  small={src}
+                  large={src}
                   alt={`Property image ${index + 1}`}
-                  style={{ maxWidth: '100%', height: 'auto', cursor: 'pointer' }}
                 />
               </div>
             ))}
