@@ -22,12 +22,12 @@ const PropertyList = () => {
       setError('');
 
       try {
-        const response = await axios.get('http://localhost:5000/properties', {
-          params: { roomCount: Number(roomCount) },
-        });
-        // const response = await axios.get('https://rukh-estate-api-5571379c698a.herokuapp.com/properties', {
+        // const response = await axios.get('http://localhost:5000/properties', {
         //   params: { roomCount: Number(roomCount) },
         // });
+        const response = await axios.get('https://rukh-estate-api-5571379c698a.herokuapp.com/properties', {
+          params: { roomCount: Number(roomCount) },
+        });
 
         if (Array.isArray(response.data)) {
           const filteredProperties = Number(roomCount) >= 5
