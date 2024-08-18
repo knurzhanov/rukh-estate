@@ -69,7 +69,7 @@ const PropertyListing = () => {
               <td>{property.floor}</td>
               <td>{property.price}</td>
               <td>
-                <button onClick={() => handleEdit(property._id)}>Редактировать</button>
+                {/* <button onClick={() => handleEdit(property._id)}>Редактировать</button> */}
                 <button onClick={() => handleDelete(property._id)}>Удалить</button>
               </td>
             </tr>
