@@ -55,27 +55,11 @@ const CreateProperty = () => {
         doc.querySelector('.offer__price')?.textContent?.trim() || '';
       const square =
         doc.querySelector('[data-name="flat.floor"]')?.textContent?.trim() || '';
+        const homeTitle =
+        doc.querySelector('[data-name="map.complex .offer__advert-short-info a"]')?.textContent?.trim() || '';
 
-        function getComplexName() {
-          // Найдем элемент с атрибутом data-name равным 'map.complex'
-          const element = document.querySelector('[data-name="map.complex"]');
-        
-          // Убедимся, что элемент найден и внутри него есть ссылка
-          if (element) {
-            const complexNameElement = element.querySelector('.offer__advert-short-info a');
-            if (complexNameElement) {
-              return complexNameElement.textContent.trim(); // Возвращаем текст ссылки
-            }
-          }
-        
-          // Если ничего не нашли, возвращаем null
-          return null;
-        }
+      
     
-
-        // Используем функцию и записываем результат в переменну
-        const homeTitle = getComplexName();
-
       const descriptionHtml =
         doc.querySelector('.js-description.a-text.a-text-white-spaces')
           ?.innerHTML || '';
