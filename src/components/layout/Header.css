@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-
 *{
   font-family: "Inter", sans-serif;
 }
@@ -67,7 +66,13 @@
   .nav-menu ul li a:hover {
     color:#4CAF50;
   }
-  
+  .logout-btn{
+    border: none;
+    background-color: #EEEEEE;
+    border-radius: 10px;
+    color: black;
+    padding: 5px 10px;
+  }
   .close-btn {
     position: absolute;
     top: 20px;
@@ -173,4 +178,16 @@
     height: 210px!important;
     object-fit: cover;
     cursor: pointer;
+  }
+  @media screen and (max-width: 600px) {
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #000; /* Цвет можно поменять на подходящий */
+    }
   }

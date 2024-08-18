@@ -19,6 +19,7 @@ const Header = () => {
   const MenuTitle = styled.div`
     margin-left: 20px;
     margin-top: 20px;
+    margin-bottom: 0px;
     font-weight: bold;
     font-size: 20px;
   `;
@@ -50,9 +51,9 @@ const Header = () => {
       </div>
       <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
         <button className="close-btn" onClick={closeMenu}>&times;</button>
-        <MenuTitle>Навигация</MenuTitle>
+        <MenuTitle>Меню</MenuTitle>
+        <hr></hr>
         <ul>
-          <li><a href="/properties">Все квартиры</a></li>
           <li><a href="/select">Подбор квартиры</a></li>
           {user && user.role === 'Admin' && (
             <>
