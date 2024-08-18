@@ -14,8 +14,7 @@ const EditProperty = () => {
     address: '',
     price: '',
     square: '',
-    description: '',
-    images: []
+    description: ''
   });
 
   // Получение данных о квартире при монтировании компонента
@@ -37,24 +36,11 @@ const EditProperty = () => {
     setProperty({ ...property, [e.target.name]: e.target.value });
   };
 
-  // Обработка изменений в массиве изображений
-  const handleImageChange = (index, value) => {
-    const updatedImages = [...property.images];
-    updatedImages[index] = value;
-    setProperty({ ...property, images: updatedImages });
-  };
+  
 
-  // Добавление нового поля для изображения
-  const handleAddImage = () => {
-    setProperty({ ...property, images: [...property.images, ''] });
-  };
-
+ 
   // Удаление поля для изображения
-  const handleRemoveImage = (index) => {
-    const updatedImages = property.images.filter((_, i) => i !== index);
-    setProperty({ ...property, images: updatedImages });
-  };
-
+  
   // Отправка данных на сервер при сохранении изменений
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -158,24 +144,7 @@ const EditProperty = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label>Изображения</label>
-          {property.images.map((image, index) => (
-            <div key={index}>
-              <input
-                type="text"
-                value={image}
-                onChange={(e) => handleImageChange(index, e.target.value)}
-              />
-              <button type="button" onClick={() => handleRemoveImage(index)}>
-                Удалить
-              </button>
-            </div>
-          ))}
-          <button type="button" onClick={handleAddImage}>
-            Добавить Изображение
-          </button>
-        </div>
+       
         <button type="submit">Сохранить Изменения</button>
       </form>
     </div>
