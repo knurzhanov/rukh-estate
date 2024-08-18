@@ -141,3 +141,11 @@ border-radius: 8px;
 .property-table button:hover {
   background-color: #45a049;
 }
+@media screen and (max-width: 600px) {
+  .auth-btn {
+    font-size: 15px;
+    font-weight: 600;
+  
+  
+  }
+}
