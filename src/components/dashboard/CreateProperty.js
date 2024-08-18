@@ -71,12 +71,17 @@ const CreateProperty = () => {
                 if (complexNameElement) {
                   return complexNameElement.textContent.trim(); // Возвращаем название жилого комплекса
                 }
+                console.log('Title element found:', titleElement.textContent.trim());
+console.log('Parent element found:', parentElement);
+console.log('Complex name element found:', complexNameElement);
+
               }
             }
           }
         
           // Если ничего не нашли, возвращаем пустую строку или null
           return null;
+          
         }
         
         // Используем функцию и записываем результат в переменную
