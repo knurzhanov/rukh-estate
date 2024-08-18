@@ -56,7 +56,7 @@ const CreateProperty = () => {
       const square =
         doc.querySelector('[data-name="flat.floor"]')?.textContent?.trim() || '';
         const homeTitle =
-        doc.querySelector('[data-name="map.complex"] .offer__advert-short-info a]')?.textContent?.trim() || '';
+        doc.querySelector('[data-name="map.complex"] a')?.textContent?.trim() || '';
 
       
     
