@@ -17,6 +17,7 @@
   transform: translate(-50%, -50%);
   opacity: 1; /* Логотип изначально видим */
   transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Переходы для движения и прозрачности */
+  z-index: 9999;
 }
 .logo-container svg{
   padding-right: 35px;
@@ -30,10 +31,12 @@
     -50%,
     calc(-50% - 220px)
   ); /* Двигается вверх на 100 пикселей */
+  z-index: 9999;
 }
 
 /* Стиль для формы */
 .form-container {
+  z-index: 999;
   position: absolute;
   top: 60%;
   left: 50%;
