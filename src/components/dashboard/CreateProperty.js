@@ -64,10 +64,14 @@ const CreateProperty = () => {
           for (let titleElement of titleElements) {
             // Проверим, что текст внутри элемента 'offer__info-title' равен 'Жилой комплекс'
             if (titleElement.textContent.trim() === 'Жилой комплекс') {
-              // Если нашли, достаем родительский элемент и ищем внутри него ссылку
+              // Ищем следующий соседний элемент с классом 'offer__advert-short-info'
               const parentElement = titleElement.closest('.offer__info-item');
-              const complexName = parentElement.querySelector('.offer__advert-short-info a')?.textContent.trim() || '';
-              return complexName; // Возвращаем название жилого комплекса
+              if (parentElement) {
+                const complexNameElement = parentElement.querySelector('.offer__advert-short-info a');
+                if (complexNameElement) {
+                  return complexNameElement.textContent.trim(); // Возвращаем название жилого комплекса
+                }
+              }
             }
           }
         
