@@ -54,6 +54,8 @@ const CreateProperty = () => {
         doc.querySelector('.offer__price')?.textContent?.trim() || '';
       const square =
         doc.querySelector('[data-name="flat.floor"]')?.textContent?.trim() || '';
+      const homeTitle =
+      doc.querySelector('.offer__advert-short-info a')?.textContent?.trim() || '';
       const descriptionHtml =
         doc.querySelector('.js-description.a-text.a-text-white-spaces')
           ?.innerHTML || '';
@@ -84,6 +86,7 @@ const CreateProperty = () => {
           address,
           price,
           square,
+          homeTitle,
           description: descriptionHtml,
           images,
         });
@@ -96,6 +99,7 @@ const CreateProperty = () => {
           address,
           price,
           square,
+          homeTitle,
           description: descriptionHtml,
           images,
         });
@@ -117,6 +121,7 @@ const CreateProperty = () => {
         price: '',
         square: '',
         description: '',
+        homeTitle: '',
         images: [],
       });
     }
@@ -192,6 +197,13 @@ const CreateProperty = () => {
             type="text"
             name="title"
             value={data.title}
+            onChange={handleInputChangeData}
+          />
+          <h2>ЖК:</h2>
+          <input
+            type="text"
+            name="title"
+            value={data.homeTitle}
             onChange={handleInputChangeData}
           />
           <h2>Комнатность:</h2>
