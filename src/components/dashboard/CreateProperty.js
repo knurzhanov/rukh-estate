@@ -57,34 +57,21 @@ const CreateProperty = () => {
         doc.querySelector('[data-name="flat.floor"]')?.textContent?.trim() || '';
 
         function getComplexName() {
-          // Найдем все элементы с классом 'offer__info-item'
-          const items = document.querySelectorAll('.offer__info-item');
+          // Найдем элемент с атрибутом data-name равным 'map.complex'
+          const element = document.querySelector('[data-name="map.complex"]');
         
-          // Пройдем по каждому элементу
-          for (let item of items) {
-            // Проверим, что внутри есть элемент с классом 'offer__info-title' и текстом 'Жилой комплекс'
-            const titleElement = item.querySelector('.offer__info-title');
-            if (titleElement && titleElement.textContent.trim() === 'Жилой комплекс') {
-              console.log('Title found:', titleElement.textContent.trim()); // Отладка
-        
-              // Ищем элемент с ссылкой внутри 'offer__advert-short-info'
-              const complexNameElement = item.querySelector('.offer__advert-short-info a');
-              if (complexNameElement) {
-                console.log('Complex name element found:', complexNameElement.textContent.trim()); // Отладка
-                return complexNameElement.textContent.trim(); // Возвращаем название жилого комплекса
-              } else {
-                console.log('Complex name element not found'); // Отладка
-              }
+          // Убедимся, что элемент найден и внутри него есть ссылка
+          if (element) {
+            const complexNameElement = element.querySelector('.offer__advert-short-info a');
+            if (complexNameElement) {
+              return complexNameElement.textContent.trim(); // Возвращаем текст ссылки
             }
           }
         
-          // Если ничего не нашли, возвращаем пустую строку или null
-          console.log('Complex name not found');
+          // Если ничего не нашли, возвращаем null
           return null;
         }
-        console.log('Title element found:', titleElement.textContent.trim());
-console.log('Parent element found:', parentElement);
-console.log('Complex name element found:', complexNameElement);
+    
 
         // Используем функцию и записываем результат в переменну
         const homeTitle = getComplexName();
