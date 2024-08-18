@@ -55,8 +55,31 @@ const CreateProperty = () => {
         doc.querySelector('.offer__price')?.textContent?.trim() || '';
       const square =
         doc.querySelector('[data-name="flat.floor"]')?.textContent?.trim() || '';
-      const elements = document.querySelectorAll('.offer__advert-short-info a');
-      const homeTitle = elements[1]?.textContent?.trim() || '';
+
+        function getComplexName() {
+          // Найдем все элементы с классом 'offer__info-item'
+          const items = document.querySelectorAll('.offer__info-item');
+        
+          // Пройдем по каждому элементу
+          for (let item of items) {
+            // Найдем элемент с классом 'offer__info-title'
+            const titleElement = item.querySelector('.offer__info-title');
+        
+            // Проверим, что текст внутри элемента 'offer__info-title' равен 'Жилой комплекс'
+            if (titleElement?.textContent.trim() === 'Жилой комплекс') {
+              // Если нашли, достаем текст ссылки внутри 'offer__advert-short-info'
+              const complexName = item.querySelector('.offer__advert-short-info a')?.textContent.trim() || '';
+              return complexName; // Возвращаем название жилого комплекса
+            }
+          }
+        
+          // Если ничего не нашли, возвращаем пустую строку или null
+          return null;
+        }
+        
+        // Используем функцию и записываем результат в переменную
+        const homeTitle = getComplexName().trim() || '';
+
       const descriptionHtml =
         doc.querySelector('.js-description.a-text.a-text-white-spaces')
           ?.innerHTML || '';
