@@ -54,8 +54,9 @@ const CreateProperty = () => {
         doc.querySelector('.offer__price')?.textContent?.trim() || '';
       const square =
         doc.querySelector('[data-name="flat.floor"]')?.textContent?.trim() || '';
+        const elements = document.querySelectorAll('.offer__advert-short-info a');
       const homeTitle =
-      doc.querySelector('.offer__advert-short-info a')?.textContent?.trim() || '';
+      elements[1]?.textContent?.trim() || '';
       const descriptionHtml =
         doc.querySelector('.js-description.a-text.a-text-white-spaces')
           ?.innerHTML || '';
