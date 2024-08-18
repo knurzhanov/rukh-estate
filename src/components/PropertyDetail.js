@@ -86,7 +86,7 @@ const PropertyDetail = () => {
         <p>No images available</p>
       )}
       <div className="property-header">
-        <h2 className="price">{convertPrice(property.price)} &#8376;/месяц</h2>
+        <h2 className="price">{convertPrice(property.price)}/месяц</h2>
         <div className="property-location">
           <p>{property.roomCount} комнаты • {property.area} м² • помесячно • {property.address}</p>
         </div>
