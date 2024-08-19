@@ -12,6 +12,7 @@ import PrivateRoute from './components/PrivateRoute';
 import CreateUser from './components/dashboard/CreateUser';
 import EditProperty from './components/dashboard/EditProperty';
 import NonAccess from './components/NonAccess';
+import UserList from './components/dashboard/UserList';
 
 function App() {
   return (
@@ -52,6 +53,12 @@ function App() {
             <PrivateRoute requiredRole="Admin">
               <Header />
               <CreateUser />
+            </PrivateRoute>
+          } />
+          <Route path="/user-list" element={
+            <PrivateRoute requiredRole="Admin">
+              <Header />
+              <UserList />
             </PrivateRoute>
           } />
           <Route path="/edit/:id" element={
