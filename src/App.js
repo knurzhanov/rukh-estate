@@ -20,16 +20,16 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/properties/" element={
-            <>
+            <PrivateRoute>
               <Header />
               <PropertyList />
-            </>
+              </PrivateRoute>
           } />
           <Route path="/properties/:id" element={
-            <>
+            <PrivateRoute>
               <Header />
               <PropertyDetail />
-            </>
+              </PrivateRoute>
           } />
           <Route path="/create" element={
             <PrivateRoute requiredRole="Admin">
