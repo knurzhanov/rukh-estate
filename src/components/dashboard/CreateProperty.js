@@ -83,7 +83,7 @@ const CreateProperty = () => {
         const [_, roomCount, area, floor, totalFloors, leaseType, address] =
           match;
         setData({
-          title: `${roomCount}-комнатная квартира, ${area} кв.м, ${floor}/${totalFloors} этаж, ${leaseType}, ${address}`,
+          title: `ЖК:${homeTitle}, ${area} кв.м, ${floor}/${totalFloors} этаж, ${address}`,
           roomCount,
           area,
           floor,
