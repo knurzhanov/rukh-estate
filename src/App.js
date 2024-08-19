@@ -43,7 +43,11 @@ function App() {
               <PropertyListing />
             </PrivateRoute>
           } />
-          <Route path="/select" element={<SelectRoomPage />} />
+          <Route path="/select" element={
+            <PrivateRoute>
+            <SelectRoomPage />
+            </PrivateRoute>
+            } />
           <Route path="/create-user" element={
             <PrivateRoute requiredRole="Admin">
               <Header />

@@ -19,6 +19,7 @@ const PropertyDetail = () => {
   const handleBack = () => {
     navigate(-1); // Перенаправляет на предыдущую страницу
   };
+
   useEffect(() => {
     const fetchProperty = async () => {
       try {
@@ -79,18 +80,10 @@ const PropertyDetail = () => {
       </div>
       {imagesToShow.length > 0 ? (
         <div className="image-slider">
-         
-          <Slider {...settings}>
-          <Fancybox
-        options={{
-          Carousel: {
-            infinite: false,
-          },
-        }}
-      >
-            {imagesToShow.map((src, index) => (
-              <div key={index}>
-               
+          <Fancybox options={{ Carousel: { infinite: false } }}>
+            <Slider {...settings}>
+              {imagesToShow.map((src, index) => (
+                <div key={index}>
                   <img
                     src={src}
                     alt={`Property image ${index + 1}`}
@@ -98,11 +91,10 @@ const PropertyDetail = () => {
                     data-fancybox="gallery"
                     data-src={src}
                   />
-            
-              </div>
-            ))}
-            </Fancybox>
-          </Slider>
+                </div>
+              ))}
+            </Slider>
+          </Fancybox>
           <div className="image-counter">
             {currentSlide} / {imagesToShow.length}
           </div>
