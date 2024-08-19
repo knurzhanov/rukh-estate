@@ -18,3 +18,16 @@ input{
     width: 500px;
     border: 1px solid lightgray
 }
+ 
+.image-counter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 12px;
+    height: 15px;
+    font-size: 14px;
+  }
+  

@@ -91,7 +91,6 @@
     font-family: Arial, sans-serif;
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px;
   }
   
   .image-slider {
@@ -132,18 +131,26 @@
   }
   
   .property-description {
-    margin-top: 20px;
+    margin-top: 34px;
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
+    position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+}
   
-  .property-description h3 {
-    font-size: 18px;
-    color: #333;
+.property-description h3 {
+  font-size: 13px;
+  color: #333;
+  position: absolute;
+  top: -21px;
+  padding: 2px 8px;
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+}
+  a:hover{
+    cursor: pointer;
   }
-  
   .property-description p {
     font-size: 16px;
     color: #444;
