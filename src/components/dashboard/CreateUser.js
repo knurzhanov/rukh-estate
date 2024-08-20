@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Dashboard.css'; // Импорт стилей
 
 const CreateUser = () => {
   const [username, setUsername] = useState('');
@@ -17,12 +18,6 @@ const CreateUser = () => {
     setSuccess(null);
 
     try {
-      // const response = await axios.post('http://localhost:5000/api/auth/register', {
-      //   username,
-      //   email,
-      //   password,
-      //   role,
-      // });
       console.log('Отправляем данные регистрации:', { username, email, password, role });
       const response = await axios.post('https://rukh-estate-api-5571379c698a.herokuapp.com/api/auth/register', {
         username,
@@ -30,61 +25,69 @@ const CreateUser = () => {
         password,
         role,
       });
-      setSuccess('Registration successful!');
+      setSuccess('Успешно!');
       setUsername('');
       setEmail('');
       setPassword('');
       setRole('Visitor'); // Reset role to default
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
-        // Display server-side error message if available
         setError(error.response.data.message);
       } else {
-        // Fallback to a generic error message
-        setError('Registration failed. Please try again.');
+        setError('Ошибка, попробуйте еще раз');
       }
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
+   
+    <form className="create-user-form" onSubmit={handleSubmit}>
+       <h2>Регистрация</h2>
+      <label className="form-label">
+        Логин:
         <input
+          className="form-input"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
       </label>
-      <label>
+      <label className="form-label">
         Email:
         <input
+          className="form-input"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
-      <label>
-        Password:
+      <label className="form-label">
+        Пароль:
         <input
+          className="form-input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <label>
-        Role:
-        <select value={role} onChange={(e) => setRole(e.target.value)} required>
-          <option value="Admin">Admin</option>
-          <option value="Visitor">Visitor</option>
+      <label className="form-label">
+        Роль:
+        <select
+          className="form-select"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          required
+        >
+          <option value="Admin">Админ</option>
+          <option value="Visitor">Посетитель</option>
         </select>
       </label>
-      <button type="submit">Register</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
+      <button className="form-button" type="submit">Зарегистрировать</button>
+      {error && <p className="form-error">{error}</p>}
+      {success && <p className="form-success">{success}</p>}
     </form>
   );
 };

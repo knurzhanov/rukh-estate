@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './Dashboard.css'; // Импорт стилей
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
-  const [newPassword, setNewPassword] = useState('');
+  const [passwords, setPasswords] = useState({});
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
@@ -14,7 +15,7 @@ const UserList = () => {
         console.log(response.data); // Проверьте, что данные возвращаются корректно
         setUsers(response.data);
       } catch (error) {
-        setError('Error fetching users: ' + error.message);
+        setError('Ошибка при получении списка: ' + error.message);
       }
     };
   
@@ -26,34 +27,39 @@ const UserList = () => {
     try {
       await axios.delete(`https://rukh-estate-api-5571379c698a.herokuapp.com/api/auth/users/${userId}`);
       setUsers(users.filter(user => user._id !== userId));
-      setSuccess('User deleted successfully');
+      setSuccess('Успешно удалено');
     } catch (error) {
-      setError('Error deleting user: ' + error.message);
+      setError('Ошибка при удалений: ' + error.message);
     }
   };
 
   const handleChangePassword = async (userId) => {
     try {
-      await axios.put(`https://rukh-estate-api-5571379c698a.herokuapp.com/api/auth/users/${userId}/password`, { password: newPassword });
-      setSuccess('Password updated successfully');
-      setNewPassword(''); // Clear the password input after successful update
+      const password = passwords[userId] || ''; // Получаем пароль для данного пользователя
+      await axios.put(`https://rukh-estate-api-5571379c698a.herokuapp.com/api/auth/users/${userId}/password`, { password });
+      setSuccess('Пароль успешно обновлен');
+      setPasswords({ ...passwords, [userId]: '' }); // Очищаем пароль после успешного обновления
     } catch (error) {
-      setError('Error updating password: ' + error.message);
+      setError('Ошибка' + error.message);
     }
   };
 
+  const handlePasswordChange = (userId, value) => {
+    setPasswords({ ...passwords, [userId]: value });
+  };
+
   return (
-    <div>
-      <h2>User List</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-      <table>
+    <div className="user-list-container">
+      <h2 className="user-list-title">Список пользователей</h2>
+      {error && <p className="user-list-error">{error}</p>}
+      {success && <p className="user-list-success">{success}</p>}
+      <table className="user-list-table">
         <thead>
           <tr>
-            <th>Username</th>
+            <th>Логин</th>
             <th>Email</th>
-            <th>Role</th>
-            <th>Actions</th>
+            <th>Роль</th>
+            <th>Действия</th>
           </tr>
         </thead>
         <tbody>
@@ -63,21 +69,23 @@ const UserList = () => {
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
-                <button onClick={() => handleDelete(user._id)}>Delete</button>
+                <button className="user-list-button" onClick={() => handleDelete(user._id)}>Удалить</button>
                 <form
+                  className="user-password-form"
                   onSubmit={(e) => {
                     e.preventDefault();
                     handleChangePassword(user._id);
                   }}
                 >
                   <input
+                    className="user-password-input"
                     type="password"
-                    placeholder="New password"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="Новый пароль"
+                    value={passwords[user._id] || ''}
+                    onChange={(e) => handlePasswordChange(user._id, e.target.value)}
                     required
                   />
-                  <button type="submit">Change Password</button>
+                  <button className="user-password-button" type="submit">Сменить пароль</button>
                 </form>
               </td>
             </tr>

@@ -16,13 +16,6 @@ const Header = () => {
     navigate('/'); // Redirect to login page
   };
 
-  const MenuTitle = styled.div`
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-bottom: 0px;
-    font-weight: bold;
-    font-size: 20px;
-  `;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -51,7 +44,7 @@ const Header = () => {
       </div>
       <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
         <button className="close-btn" onClick={closeMenu}>&times;</button>
-        <MenuTitle>Меню</MenuTitle>
+        <div className='menu-title'>Меню</div>
         <hr></hr>
         <ul>
           <li><a href="/select">Подбор квартиры</a></li>
@@ -59,9 +52,10 @@ const Header = () => {
             <>
               <li><a href="/create">Создать</a></li>
               <li><a href="/listing">Список квартир</a></li>
+              <li><a href="/create-user">Создать пользователя</a></li>
+              <li><a href="/user-list">Список пользователей</a></li>
             </>
           )}
-          <li><a href="/contact">Контакты</a></li>
           <li><button className="logout-btn" onClick={logoutUser}>Выйти</button></li> {/* Add logout button */}
         </ul>
       </nav>

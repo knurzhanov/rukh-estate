@@ -75,7 +75,7 @@ const SubmitButton = styled.button`
     background-color: #014273;
   }
 `
-const SelectBlock = styled.button`
+const SelectBlock = styled.div`
 border:none;
 background: white;
 width: 350px;

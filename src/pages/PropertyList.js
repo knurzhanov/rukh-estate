@@ -39,7 +39,7 @@ const PropertyList = () => {
           setError('Неожиданный формат данных');
         }
       } catch (error) {
-        setError('Ошибка при загрузке данных');
+        setError('Нет доступных квартир');
       } finally {
         setLoading(false);
       }
