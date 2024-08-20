@@ -16,7 +16,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 1; /* Логотип изначально видим */
-  transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Переходы для движения и прозрачности */
+ /* Переходы для движения и прозрачности */
   z-index: 9999;
 }
 .logo-container svg{
