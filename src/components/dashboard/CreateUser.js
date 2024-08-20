@@ -23,6 +23,7 @@ const CreateUser = () => {
       //   password,
       //   role,
       // });
+      console.log('Отправляем данные регистрации:', { username, email, password, role });
       const response = await axios.post('https://rukh-estate-api-5571379c698a.herokuapp.com/api/auth/register', {
         username,
         email,

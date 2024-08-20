@@ -8,18 +8,19 @@ const UserList = () => {
   const [success, setSuccess] = useState(null);
 
   useEffect(() => {
-    // Fetch users from the server when the component mounts
     const fetchUsers = async () => {
       try {
         const response = await axios.get('https://rukh-estate-api-5571379c698a.herokuapp.com/api/auth/users');
+        console.log(response.data); // Проверьте, что данные возвращаются корректно
         setUsers(response.data);
       } catch (error) {
         setError('Error fetching users: ' + error.message);
       }
     };
-
+  
     fetchUsers();
   }, []);
+  
 
   const handleDelete = async (userId) => {
     try {
