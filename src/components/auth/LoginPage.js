@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import { Helmet } from 'react-helmet';
 
 const LoginPage = () => {
   const [animation, setAnimation] = useState(false);
@@ -75,7 +76,17 @@ const LoginPage = () => {
   };
 
   return (
+   
     <div className="login-page">
+      <Helmet>
+        <link
+          rel="preload"
+          href="./LoginPage.css"
+          as="style"
+          onLoad="this.rel='stylesheet'"
+        />
+        <noscript>{`<link rel="stylesheet" href="./LoginPage.css" />`}</noscript>
+      </Helmet>
       <div className="main-login__container">
         <div className={`logo-container ${animation ? 'animate' : ''}`}>
           <div className="logo">
