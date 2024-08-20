@@ -13,7 +13,7 @@ const LoginPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimation(true);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer); // Очистка таймера при размонтировании компонента
   }, []);
