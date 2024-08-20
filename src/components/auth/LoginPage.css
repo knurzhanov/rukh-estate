@@ -43,7 +43,7 @@
   width: 330px;
   transform: translate(-50%, -70%);
   opacity: 0;
-  transition: opacity 0.5s ease-in-out 1s; /* Форма появится через 1 секунду после начала анимации логотипа */
+  transition: opacity 0.5s ease-in-out 2s; /* Форма появится через 1 секунду после начала анимации логотипа */
 }
 
 .form-container.animate {
