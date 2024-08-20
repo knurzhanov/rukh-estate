@@ -14,9 +14,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  transform: translate(-50%, 0);
   opacity: 1; /* Логотип изначально видим */
- /* Переходы для движения и прозрачности */
+  transition: transform 1s ease-in-out; /* Переходы для движения и прозрачности */
   z-index: 9999;
 }
 .logo-container svg{
@@ -31,19 +32,19 @@
     -50%,
     calc(-50% - 220px)
   ); /* Двигается вверх на 100 пикселей */
-  
+  z-index: 9999;
 }
 
 /* Стиль для формы */
 .form-container {
-
+  z-index: 999;
   position: absolute;
   top: 60%;
   left: 50%;
   width: 330px;
   transform: translate(-50%, -70%);
   opacity: 0;
-  transition: opacity 0.5s ease-in-out 2s; /* Форма появится через 1 секунду после начала анимации логотипа */
+  transition: opacity 0.5s ease-in-out 1s; /* Форма появится через 1 секунду после начала анимации логотипа */
 }
 
 .form-container.animate {
