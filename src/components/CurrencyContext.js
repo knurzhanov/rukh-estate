@@ -14,7 +14,6 @@ export const CurrencyProvider = ({ children }) => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
           const parsedUser = JSON.parse(storedUser);
-          console.log('User from localStorage:', parsedUser);
           setUser(parsedUser);
         }
       } catch (error) {
@@ -34,7 +33,6 @@ export const CurrencyProvider = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', token);
       setUser(user);
-      console.log('User after login:', user);
     } catch (error) {
       console.error('Login error:', error);
       // Handle login error, e.g., show a message to the user
@@ -46,7 +44,6 @@ export const CurrencyProvider = ({ children }) => {
       localStorage.removeItem('user');
       localStorage.removeItem('token');
       setUser(null);
-      console.log('User logged out');
     } catch (error) {
       console.error('Logout error:', error);
       // Handle logout error, e.g., show a message to the user

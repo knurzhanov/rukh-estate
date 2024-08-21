@@ -12,7 +12,6 @@ const UserList = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get('https://rukh-estate-api-5571379c698a.herokuapp.com/api/auth/users');
-        console.log(response.data); // Проверьте, что данные возвращаются корректно
         setUsers(response.data);
       } catch (error) {
         setError('Ошибка при получении списка: ' + error.message);

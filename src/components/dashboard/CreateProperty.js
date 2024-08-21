@@ -67,15 +67,6 @@ const CreateProperty = () => {
         doc.querySelectorAll('.gallery__container img')
       ).map((img) => convertToFullSizeImage(img.src));
 
-      console.log('Parsed Data:', {
-        title,
-        price,
-        square,
-        homeTitle,
-        descriptionHtml,
-        images,
-      });
-
       const titleRegex = /(\d+)-комнатная квартира, (\d+) м², (\d+)\/(\d+) этаж (помесячно|посуточно), (.+)/;
       const match = title.match(titleRegex);
 
@@ -95,26 +86,14 @@ const CreateProperty = () => {
           description: descriptionHtml,
           images,
         });
-        console.log('Updated Data State:', {
-          title: `${area} кв.м, ${floor}/${totalFloors} этаж, ${leaseType}, ${address}`,
-          roomCount,
-          area,
-          floor,
-          totalFloors,
-          address,
-          price,
-          square,
-          homeTitle,
-          description: descriptionHtml,
-          images,
-        });
+       
       } else {
         setError('Не удалось распарсить заголовок');
       }
 
       setError('');
     } catch (error) {
-      console.log('Ошибка при получении данных:', error);
+     
       setError('Ошибка при получении данных: ' + error.message);
       setData({
         title: '',
@@ -134,7 +113,7 @@ const CreateProperty = () => {
 
   useEffect(() => {
     // Этот useEffect будет вызван после обновления data
-    console.log('Data in useEffect:', data);
+
   }, [data]);
 
   const handleSubmit = (e) => {
@@ -149,7 +128,7 @@ const CreateProperty = () => {
     }
 
     try {
-      console.log('Data to be sent:', data);
+
       // await axios.post('http://localhost:5000/add-product', data, {
       //   headers: {
       //     'Content-Type': 'application/json',

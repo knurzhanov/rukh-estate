@@ -16,7 +16,7 @@ const PropertyList = ({ roomCount }) => {
         // Определение параметров запроса
         const params = roomCount ? { roomCount: Number(roomCount) } : {}
 
-        console.log('Fetching properties with params:', params)
+  
         // const response = await axios.get('http://localhost:5000/properties', {
         //   params,
         // })
