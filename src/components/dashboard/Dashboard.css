@@ -188,6 +188,8 @@ textarea{
     font-size: 15px;
   }
   .create--property_btn{
+    background-color: rgb(8, 67, 112);
+    color: white;
     margin-top: 20px;
     border: none;
     padding: 5px 20px;
