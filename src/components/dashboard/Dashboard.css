@@ -25,6 +25,7 @@ input{
     width: 96%;
     border: 1px solid lightgray;
     border-radius: 5px;
+    font-weight: 600;
 }
 .create-template{
   width: 450px;
