@@ -199,6 +199,11 @@ textarea{
     .property__listing{
       width: 90%;
     }
+    .urlBtn{
+      height: 33px;
+      border: none;
+      font-weight: 600;
+  }
     #images{
       height: 155px!important;
       overflow: scroll!important;
