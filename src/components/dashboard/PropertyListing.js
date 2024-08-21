@@ -43,7 +43,7 @@ const PropertyListing = () => {
   };
 
   return (
-    <div className="App container">
+    <div className="App container property__listing">
       <h1>Cписок квартир</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {success && <p style={{ color: 'green' }}>{success}</p>}

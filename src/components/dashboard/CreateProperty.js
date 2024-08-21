@@ -178,8 +178,8 @@ const CreateProperty = () => {
 
   return (
     <div className="App container">
-      <div>
-        <h1>RUKH-estate</h1>
+      <div className='create-template'>
+        <h2>Новое обьявление</h2>
         <form onSubmit={handleSubmit}>
           <div className="enterUrl">
             <label htmlFor="url">Введите URL:</label>
@@ -190,70 +190,70 @@ const CreateProperty = () => {
               onChange={handleInputChange}
               placeholder="Введите URL"
             />
-          </div>
-          <button className="urlBtn" type="submit">
+            <button className="urlBtn" type="submit">
             Получить данные
           </button>
-          <hr />
+          </div>
+          
         </form>
         <div>
-          <h2>Название:</h2>
+          <h2 className='h2--style'>Название:</h2>
           <input
             type="text"
             name="title"
             value={data.title}
             onChange={handleInputChangeData}
           />
-          <h2>ЖК:</h2>
+          <h2 className='h2--style'>ЖК:</h2>
           <input
             type="text"
             name="homeTitle"
             value={data.homeTitle}
             onChange={handleInputChangeData}
           />
-          <h2>Комнатность:</h2>
+          <h2 className='h2--style'>Комнатность:</h2>
           <input
             type="text"
             name="roomCount"
             value={data.roomCount}
             onChange={handleInputChangeData}
           />
-          <h2>Площадь:</h2>
+          <h2 className='h2--style'>Площадь:</h2>
           <input
             type="text"
             name="area"
             value={data.area}
             onChange={handleInputChangeData}
           />
-          <h2>Этаж:</h2>
+          <h2 className='h2--style'>Этаж:</h2>
           <input
             type="text"
             name="floor"
             value={data.floor}
             onChange={handleInputChangeData}
           />
-          <h2>Всего этажей:</h2>
+          <h2 className='h2--style'>Всего этажей:</h2>
           <input
             type="text"
             name="totalFloors"
             value={data.totalFloors}
             onChange={handleInputChangeData}
           />
-          <h2>Адрес:</h2>
+          <h2 className='h2--style'>Адрес:</h2>
           <input
             type="text"
             name="address"
             value={data.address}
             onChange={handleInputChangeData}
           />
-          <h2>Цена:</h2>
+          <h2 className='h2--style'>Цена:</h2>
           <input
             type="text"
             name="price"
             value={data.price}
             onChange={handleInputChangeData}
           />
-          <h2>Описание:</h2>
+          <h2 className='h2--style'>Описание:</h2>
           <textarea
             name="description"
             value={data.description}
@@ -261,7 +261,7 @@ const CreateProperty = () => {
           />
         </div>
         <div>
-          <h2>Фото:</h2>
+          <h2 className='h2--style'>Фото:</h2>
           <div id="images">
             {data.images.length > 0 ? (
               data.images.map((src, index) => (
@@ -279,7 +279,7 @@ const CreateProperty = () => {
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {success && <p style={{ color: 'green' }}>{success}</p>}
-        <button onClick={handleAddToDb}>Добавить в базу данных</button>
+        <button className='create--property_btn' onClick={handleAddToDb}>Добавить в базу данных</button>
       </div>
     </div>
   );

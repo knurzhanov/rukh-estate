@@ -4,10 +4,12 @@
 }
 .enterUrl{
     float: left;
+    margin-bottom: 15px;
 }
 .urlBtn{
     height: 33px;
     border: none;
+    font-weight: 600;
 }
 hr{
     margin-top: 13px;
@@ -15,10 +17,26 @@ hr{
 input{
     border: none;
     height: 30px;
-    width: 500px;
-    border: 1px solid lightgray
+    width: 96%;
+    border: 1px solid lightgray;
+    border-radius: 5px;
 }
- 
+.create-template{
+  width: 450px;
+  margin: 0 auto;
+}
+textarea{
+  width: 96%;
+  min-height: 150px;
+  resize: vertical; 
+}
+.property__listing{
+  width: 820px;
+  overflow: hidden;
+  overflow-x: scroll;
+  margin: 0 auto;
+  font-size: 13px;
+}
 .image-counter {
     position: absolute;
     top: 10px;
@@ -165,9 +183,30 @@ input{
     border-color: rgb(8, 67, 112);
     outline: none;
   }
-  
+  .h2--style{
+    margin-bottom: 5px;
+    font-size: 15px;
+  }
+  .create--property_btn{
+    margin-top: 20px;
+    border: none;
+    padding: 5px 20px;
+    margin-bottom: 40px;
+    font-weight: 600;
+  }
   /* Адаптивные стили */
   @media (max-width: 768px) {
+    .property__listing{
+      width: 90%;
+    }
+    #images{
+      height: 155px!important;
+      overflow: scroll!important;
+     }
+    .create-template{
+      margin: 0 auto;
+      width: 90%;
+    }
     .user-list-table {
       font-size: 14px;
     }
@@ -187,6 +226,14 @@ input{
   }
   
   @media (max-width: 480px) {
+   #images{
+    height: 155px;
+    overflow: scroll;
+   }
+    .create-template{
+      margin: 0 auto;
+      width: 90%;
+    }
     .user-list-title {
       font-size: 20px;
     }
