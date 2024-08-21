@@ -77,7 +77,8 @@
   border: 1px solid lightgrey;
   border-radius: 6px;
   -webkit-border-radius: 6px; /* Префикс для border-radius */
-  font-weight: 600;
+  font-weight: 600!important;
+  font-size: 15px;
   color: black;
 }
 
