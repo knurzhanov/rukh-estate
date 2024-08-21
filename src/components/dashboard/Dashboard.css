@@ -11,14 +11,6 @@
     border: none;
     font-weight: 600;
 }
-.urlBtn input{
-  background-color: rgb(8, 67, 112);
-  color: white;
-  font-weight: 600;
-}
-hr{
-    margin-top: 13px;
-}
 input{
     border: none;
     height: 30px;
