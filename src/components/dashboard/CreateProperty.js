@@ -191,11 +191,13 @@ const CreateProperty = () => {
               placeholder="Введите URL"
             />
           </div>
+          <br></br>
           <button className="urlBtn" type="submit">
             Получить данные
           </button>
         </form>
         <div>
+        <br></br>
           <h2 className='h2--style'>Название:</h2>
           <input
             type="text"
