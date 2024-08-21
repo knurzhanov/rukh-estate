@@ -190,11 +190,10 @@ const CreateProperty = () => {
               onChange={handleInputChange}
               placeholder="Введите URL"
             />
-            <button className="urlBtn" type="submit">
+          </div>
+          <button className="urlBtn" type="submit">
             Получить данные
           </button>
-          </div>
-          
         </form>
         <div>
           <h2 className='h2--style'>Название:</h2>
