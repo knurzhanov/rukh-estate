@@ -253,6 +253,9 @@ textarea{
   
   /* Адаптивные стили */
   @media (max-width: 768px) {
+    input{
+      font-weight: 600!important;
+  }
     .create-user-form {
       padding: 15px;
     }
