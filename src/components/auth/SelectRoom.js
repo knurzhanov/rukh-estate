@@ -12,7 +12,7 @@ const Container = styled.div`
 
 const Logo = styled.div`
   margin-bottom: 30px;
-  padding-left:10px;
+  padding-left:30px;
 `
 
 const FormGroup = styled.div`
