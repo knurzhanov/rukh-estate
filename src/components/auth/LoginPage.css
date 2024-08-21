@@ -73,12 +73,12 @@
   padding: 0.5rem;
   box-sizing: border-box;
   -webkit-box-sizing: border-box; /* Префикс для box-sizing */
-  box-shadow: 1px 1px 12px -6px gray!important;
-  -webkit-box-shadow: 1px 1px 12px -6px gray!important; /* Префикс для box-shadow */
   height: 40px;
-  border: none;
+  border: 1px solid lightgrey;
   border-radius: 6px;
   -webkit-border-radius: 6px; /* Префикс для border-radius */
+  font-weight: 600;
+  color: black;
 }
 
 
