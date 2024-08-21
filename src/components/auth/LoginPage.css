@@ -73,8 +73,8 @@
   padding: 0.5rem;
   box-sizing: border-box;
   -webkit-box-sizing: border-box; /* Префикс для box-sizing */
-  box-shadow: 1px 1px 12px -6px gray;
-  -webkit-box-shadow: 1px 1px 12px -6px gray; /* Префикс для box-shadow */
+  box-shadow: 1px 1px 12px -6px gray!important;
+  -webkit-box-shadow: 1px 1px 12px -6px gray!important; /* Префикс для box-shadow */
   height: 40px;
   border: none;
   border-radius: 6px;
