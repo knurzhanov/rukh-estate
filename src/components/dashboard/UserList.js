@@ -57,7 +57,6 @@ const UserList = () => {
         <thead>
           <tr>
             <th>Логин</th>
-            <th>Email</th>
             <th>Роль</th>
             <th>Действия</th>
           </tr>
@@ -66,7 +65,6 @@ const UserList = () => {
           {users.map(user => (
             <tr key={user._id}>
               <td>{user.username}</td>
-              <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
                 <button className="user-list-button" onClick={() => handleDelete(user._id)}>Удалить</button>
