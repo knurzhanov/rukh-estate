@@ -42,13 +42,13 @@
   left: 50%;
   width: 330px;
   transform: translate(-50%, -70%);
-  opacity: 0;
+  opacity: 0!important;
   -webkit-transition: opacity 0.5s ease-in-out 1s;
   transition: opacity 0.5s ease-in-out 1s; /* Форма появится через 1 секунду после начала анимации логотипа */
 }
 
 .form-container.animate {
-  opacity: 1;
+  opacity: 1!important;
 }
 
 /* Стиль для формы */
