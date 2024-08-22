@@ -19,6 +19,7 @@ const CreateProperty = () => {
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Добавляем состояние загрузки
 
   const handleInputChange = (e) => {
     setUrl(e.target.value);
@@ -34,6 +35,8 @@ const CreateProperty = () => {
       setError('Введите ссылку!');
       return;
     }
+
+    setIsLoading(true); // Устанавливаем состояние загрузки в true
 
     try {
       const response = await fetch(
@@ -55,11 +58,9 @@ const CreateProperty = () => {
         doc.querySelector('.offer__price')?.textContent?.trim() || '';
       const square =
         doc.querySelector('[data-name="flat.floor"]')?.textContent?.trim() || '';
-        const homeTitle =
+      const homeTitle =
         doc.querySelector('[data-name="map.complex"] a')?.textContent?.trim() || '';
 
-      
-    
       const descriptionHtml =
         doc.querySelector('.js-description.a-text.a-text-white-spaces')
           ?.innerHTML || '';
@@ -69,16 +70,10 @@ const CreateProperty = () => {
 
       const titleRegex = /(\d+)-комнатная квартира, (\d+(?:\.\d+)?) м², (\d+)\/(\d+) этаж (помесячно|посуточно), (.+)/;
 
-
-
       const match = title.match(titleRegex);
 
       if (match) {
-        const [_, roomCount, area, floor, totalFloors, leaseType, address] =
-          match;
-          console.log({
-            title: `ЖК: ${roomCount}-комнатная, ${area} м², ${floor}/${totalFloors} этаж, ${leaseType}, ${address}`,
-          });
+        const [_, roomCount, area, floor, totalFloors, leaseType, address] = match;
         setData({
           title: `ЖК:${homeTitle}, ${area} м², ${floor}/${totalFloors} этаж, ${address}`,
           roomCount,
@@ -92,14 +87,12 @@ const CreateProperty = () => {
           description: descriptionHtml,
           images,
         });
-       
       } else {
         setError('Не удалось распарсить заголовок');
       }
 
       setError('');
     } catch (error) {
-     
       setError('Ошибка при получении данных: ' + error.message);
       setData({
         title: '',
@@ -114,12 +107,13 @@ const CreateProperty = () => {
         homeTitle: '',
         images: [],
       });
+    } finally {
+      setIsLoading(false); // Устанавливаем состояние загрузки в false
     }
   };
 
   useEffect(() => {
     // Этот useEffect будет вызван после обновления data
-
   }, [data]);
 
   const handleSubmit = (e) => {
@@ -134,17 +128,9 @@ const CreateProperty = () => {
     }
 
     try {
-
-      // await axios.post('http://localhost:5000/add-product', data, {
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     // передаем токен в заголовке
-      //   },
-      // });
       await axios.post('https://rukh-estate-api-5571379c698a.herokuapp.com/add-product', data, {
         headers: {
           'Content-Type': 'application/json',
-          // передаем токен в заголовке
         },
       });
       setSuccess('Данные успешно добавлены в базу данных!');
@@ -180,92 +166,102 @@ const CreateProperty = () => {
           <button className="urlBtn" type="submit">
             Получить данные
           </button>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
-        <div>
-        <br></br>
-          <h2 className='h2--style'>Название:</h2>
-          <input
-            type="text"
-            name="title"
-            value={data.title}
-            onChange={handleInputChangeData}
-          />
-          <h2 className='h2--style'>ЖК:</h2>
-          <input
-            type="text"
-            name="homeTitle"
-            value={data.homeTitle}
-            onChange={handleInputChangeData}
-          />
-          <h2 className='h2--style'>Комнатность:</h2>
-          <input
-            type="text"
-            name="roomCount"
-            value={data.roomCount}
-            onChange={handleInputChangeData}
-          />
-          <h2 className='h2--style'>Площадь:</h2>
-          <input
-            type="text"
-            name="area"
-            value={data.area}
-            onChange={handleInputChangeData}
-          />
-          <h2 className='h2--style'>Этаж:</h2>
-          <input
-            type="text"
-            name="floor"
-            value={data.floor}
-            onChange={handleInputChangeData}
-          />
-          <h2 className='h2--style'>Всего этажей:</h2>
-          <input
-            type="text"
-            name="totalFloors"
-            value={data.totalFloors}
-            onChange={handleInputChangeData}
-          />
-          <h2 className='h2--style'>Адрес:</h2>
-          <input
-            type="text"
-            name="address"
-            value={data.address}
-            onChange={handleInputChangeData}
-          />
-          <h2 className='h2--style'>Цена:</h2>
-          <input
-            type="text"
-            name="price"
-            value={data.price}
-            onChange={handleInputChangeData}
-          />
-          <h2 className='h2--style'>Описание:</h2>
-          <textarea
-            name="description"
-            value={data.description}
-            onChange={handleInputChangeData}
-          />
-        </div>
-        <div>
-          <h2 className='h2--style'>Фото:</h2>
-          <div id="images">
-            {data.images.length > 0 ? (
-              data.images.map((src, index) => (
-                <img
-                  key={index}
-                  src={src}
-                  alt=""
-                  style={{ maxWidth: '200px', margin: '10px' }}
-                />
-              ))
-            ) : (
-              <p>Нет фото</p>
-            )}
-          </div>
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {success && <p style={{ color: 'green' }}>{success}</p>}
-        <button className='create--property_btn' onClick={handleAddToDb}>Добавить в базу данных</button>
+
+        {isLoading ? ( // Отображаем спиннер, если данные загружаются
+          <div className="spinner">Загрузка...</div>
+        ) : (
+          <>
+            <div>
+              <br></br>
+              <h2 className='h2--style'>Название:</h2>
+              <input
+                type="text"
+                name="title"
+                value={data.title}
+                onChange={handleInputChangeData}
+              />
+              <h2 className='h2--style'>ЖК:</h2>
+              <input
+                type="text"
+                name="homeTitle"
+                value={data.homeTitle}
+                onChange={handleInputChangeData}
+              />
+              <h2 className='h2--style'>Комнатность:</h2>
+              <input
+                type="text"
+                name="roomCount"
+                value={data.roomCount}
+                onChange={handleInputChangeData}
+              />
+              <h2 className='h2--style'>Площадь:</h2>
+              <input
+                type="text"
+                name="area"
+                value={data.area}
+                onChange={handleInputChangeData}
+              />
+              <h2 className='h2--style'>Этаж:</h2>
+              <input
+                type="text"
+                name="floor"
+                value={data.floor}
+                onChange={handleInputChangeData}
+              />
+              <h2 className='h2--style'>Всего этажей:</h2>
+              <input
+                type="text"
+                name="totalFloors"
+                value={data.totalFloors}
+                onChange={handleInputChangeData}
+              />
+              <h2 className='h2--style'>Адрес:</h2>
+              <input
+                type="text"
+                name="address"
+                value={data.address}
+                onChange={handleInputChangeData}
+              />
+              <h2 className='h2--style'>Цена:</h2>
+              <input
+                type="text"
+                name="price"
+                value={data.price}
+                onChange={handleInputChangeData}
+              />
+              <h2 className='h2--style'>Описание:</h2>
+              <textarea
+                name="description"
+                value={data.description}
+                onChange={handleInputChangeData}
+              />
+            </div>
+            <div>
+              <h2 className='h2--style'>Фото:</h2>
+              <div id="images">
+                {data.images.length > 0 ? (
+                  data.images.map((src, index) => (
+                    <img
+                      key={index}
+                      src={src}
+                      alt=""
+                      style={{ maxWidth: '200px', margin: '10px' }}
+                    />
+                  ))
+                ) : (
+                  <p>Нет фото</p>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+
+{success && <p style={{ color: 'green' }}>{success}</p>}
+        <button className='create--property_btn' onClick={handleAddToDb}>
+          Добавить в базу данных
+        </button>
       </div>
     </div>
   );
