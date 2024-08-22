@@ -1,25 +1,35 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode'; // Правильный импорт
 
 const CurrencyContext = createContext();
 
 export const CurrencyProvider = ({ children }) => {
   const [currency, setCurrency] = useState('KZT');
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // Добавляем состояние загрузки
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserFromLocalStorage = () => {
       try {
         const storedUser = localStorage.getItem('user');
-        if (storedUser) {
+        const token = localStorage.getItem('token');
+        if (storedUser && token) {
           const parsedUser = JSON.parse(storedUser);
-          setUser(parsedUser);
+          const decodedToken = jwtDecode(token); 
+          const currentTime = Date.now() / 1000;
+
+          if (decodedToken.exp < currentTime) {
+     
+            logoutUser();
+          } else {
+            setUser(parsedUser);
+          }
         }
       } catch (error) {
         console.error('Error fetching user from localStorage:', error);
       } finally {
-        setIsLoading(false); // Завершаем загрузку
+        setIsLoading(false);
       }
     };
 
@@ -35,7 +45,7 @@ export const CurrencyProvider = ({ children }) => {
       setUser(user);
     } catch (error) {
       console.error('Login error:', error);
-      // Handle login error, e.g., show a message to the user
+      // Обработка ошибки входа
     }
   };
 
@@ -46,7 +56,7 @@ export const CurrencyProvider = ({ children }) => {
       setUser(null);
     } catch (error) {
       console.error('Logout error:', error);
-      // Handle logout error, e.g., show a message to the user
+      // Обработка ошибки выхода
     }
   };
 

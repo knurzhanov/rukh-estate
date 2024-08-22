@@ -67,7 +67,7 @@ const CreateProperty = () => {
         doc.querySelectorAll('.gallery__container img')
       ).map((img) => convertToFullSizeImage(img.src));
 
-      const titleRegex = /(\d+)-комнатная квартира, (\d+(\.\d+)?) м², (\d+)(?:\/(\d+))? этаж (помесячно|посуточно), (.+)/;
+      const titleRegex = /(\d+)-комнатная квартира, (\d+(?:\.\d+)?) м², (\d+)\/(\d+) этаж (помесячно|посуточно), (.+)/;
 
 
 
@@ -76,6 +76,9 @@ const CreateProperty = () => {
       if (match) {
         const [_, roomCount, area, floor, totalFloors, leaseType, address] =
           match;
+          console.log({
+            title: `ЖК: ${roomCount}-комнатная, ${area} м², ${floor}/${totalFloors} этаж, ${leaseType}, ${address}`,
+          });
         setData({
           title: `ЖК:${homeTitle}, ${area} м², ${floor}/${totalFloors} этаж, ${address}`,
           roomCount,
