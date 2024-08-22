@@ -70,6 +70,7 @@ const CreateProperty = () => {
       const titleRegex = /(\d+)-комнатная квартира, (\d+(\.\d+)?) м², (\d+)(?:\/(\d+))? этаж (помесячно|посуточно), (.+)/;
 
 
+
       const match = title.match(titleRegex);
 
       if (match) {
