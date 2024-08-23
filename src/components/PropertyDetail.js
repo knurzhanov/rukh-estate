@@ -43,7 +43,7 @@ const PropertyDetail = () => {
     fetchConversionRate();
   }, [id, currency]);
 
-  if (!property) return <p>Loading...</p>;
+  if (!property) return <p>Загрузка...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   const convertPrice = (price) => {
@@ -100,7 +100,7 @@ const PropertyDetail = () => {
           </div>
         </div>
       ) : (
-        <p>No images available</p>
+        <p>Нет фотографии</p>
       )}
       <div className="property-header">
         <div className="property-location">

@@ -193,6 +193,12 @@
   .whatsapp-button a:hover {
     background-color: #1ebe57;
   }
+  .back-link{
+    padding-right: 15px;
+  }
+  .property-list--block{
+    display: flex;
+  }
   .slick-list{
     height: 210px;
   }
@@ -203,6 +209,9 @@
     cursor: pointer;
   }
   @media screen and (max-width: 600px) {
+    .property-list--block{
+      padding-left: 15px;
+    }
     .close-btn {
       position: absolute;
       top: 15px;

@@ -56,6 +56,7 @@ const LoginPage = () => {
       const result = await response.json();
       localStorage.setItem('user', JSON.stringify(result.user));
       localStorage.setItem('token', JSON.stringify(result.token)); 
+      window.location.reload();
       navigate('/select'); // Перенаправление на защищенный маршрут
     } catch (err) {
       setError(err.message || 'Произошла ошибка при отправке формы. Попробуйте еще раз.');

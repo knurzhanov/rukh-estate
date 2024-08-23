@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
 import { useCurrency } from '../components/CurrencyContext';
 import './Main.css'
@@ -97,11 +97,22 @@ const PropertyList = () => {
   const handleSortChange = (e) => {
     setSortOrder(e.target.value);
   };
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate(-1); // Перенаправляет на предыдущую страницу
+  };
 
   return (
     <div>
       <div className='container'>
-        <h1 className='propertyList-title'>Список недвижимости</h1>
+      
+      <h2 className='property-list--block'><span className='back-link'><a onClick={handleBack}><svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14.5" cy="14.5" r="14.5" fill="#EEEEEE"/>
+<path d="M7.64587 14.6464C7.45061 14.8417 7.45061 15.1583 7.64587 15.3536L10.8278 18.5355C11.0231 18.7308 11.3397 18.7308 11.535 18.5355C11.7302 18.3403 11.7302 18.0237 11.535 17.8284L8.70653 15L11.535 12.1716C11.7302 11.9763 11.7302 11.6597 11.535 11.4645C11.3397 11.2692 11.0231 11.2692 10.8278 11.4645L7.64587 14.6464ZM20.041 14.5L7.99942 14.5V15.5L20.041 15.5V14.5Z" fill="#282828"/>
+</svg>
+
+</a></span>Подобранные варианты</h2>
+ 
         <div className='filter-flex'>
           <div>
             <label htmlFor="currency">Выберите валюту:</label>
