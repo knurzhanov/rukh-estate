@@ -128,7 +128,7 @@ const CreateProperty = () => {
     }
 
     try {
-      await axios.post('https://rukh-estate-api-5571379c698a.herokuapp.com/add-product', data, {
+      await axios.post('https://rukh-ba6f8acf2ce2.herokuapp.com/add-product', data, {
         headers: {
           'Content-Type': 'application/json',
         },

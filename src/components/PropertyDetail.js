@@ -23,7 +23,7 @@ const PropertyDetail = () => {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const response = await axios.get(`https://rukh-estate-api-5571379c698a.herokuapp.com/properties/${id}`);
+        const response = await axios.get(`https://rukh-ba6f8acf2ce2.herokuapp.com/properties/${id}`);
         setProperty(response.data);
       } catch (error) {
         setError('Error fetching property details: ' + error.message);

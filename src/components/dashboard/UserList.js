@@ -11,7 +11,7 @@ const UserList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('https://rukh-estate-api-5571379c698a.herokuapp.com/api/auth/users');
+        const response = await axios.get('https://rukh-ba6f8acf2ce2.herokuapp.com/api/auth/users');
         setUsers(response.data);
       } catch (error) {
         setError('Ошибка при получении списка: ' + error.message);
@@ -24,7 +24,7 @@ const UserList = () => {
 
   const handleDelete = async (userId) => {
     try {
-      await axios.delete(`https://rukh-estate-api-5571379c698a.herokuapp.com/api/auth/users/${userId}`);
+      await axios.delete(`https://rukh-ba6f8acf2ce2.herokuapp.com/api/auth/users/${userId}`);
       setUsers(users.filter(user => user._id !== userId));
       setSuccess('Успешно удалено');
     } catch (error) {
@@ -35,7 +35,7 @@ const UserList = () => {
   const handleChangePassword = async (userId) => {
     try {
       const password = passwords[userId] || ''; // Получаем пароль для данного пользователя
-      await axios.put(`https://rukh-estate-api-5571379c698a.herokuapp.com/api/auth/users/${userId}/password`, { password });
+      await axios.put(`https://rukh-ba6f8acf2ce2.herokuapp.com/api/auth/users/${userId}/password`, { password });
       setSuccess('Пароль успешно обновлен');
       setPasswords({ ...passwords, [userId]: '' }); // Очищаем пароль после успешного обновления
     } catch (error) {

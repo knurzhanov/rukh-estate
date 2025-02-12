@@ -12,7 +12,7 @@ const PropertyListing = () => {
     const fetchProperties = async () => {
       try {
         // const response = await axios.get('http://localhost:5000/properties');
-        const response = await axios.get('https://rukh-estate-api-5571379c698a.herokuapp.com/properties');
+        const response = await axios.get('https://rukh-ba6f8acf2ce2.herokuapp.com/properties');
         setProperties(response.data);
       } catch (error) {
         console.log('Ошибка при получении данных:', error);
@@ -27,7 +27,7 @@ const PropertyListing = () => {
   const handleDelete = async (id) => {
     try {
       // await axios.delete(`http://localhost:5000/properties/${id}`);
-      await axios.delete(`https://rukh-estate-api-5571379c698a.herokuapp.com/properties/${id}`);
+      await axios.delete(`https://rukh-ba6f8acf2ce2.herokuapp.com/properties/${id}`);
       setProperties(properties.filter((property) => property._id !== id));
       setSuccess('Квартира успешно удалена!');
     } catch (error) {

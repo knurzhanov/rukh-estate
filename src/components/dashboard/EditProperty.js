@@ -45,7 +45,7 @@ const EditProperty = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/properties/${id}`, property);
+      await axios.put(`https://rukh-ba6f8acf2ce2.herokuapp.com/properties/${id}`, property);
       navigate('/listing'); // Редирект на список объектов после сохранения
     } catch (error) {
       console.error('Ошибка при сохранении данных:', error);
