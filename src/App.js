@@ -50,10 +50,10 @@ function App() {
             </PrivateRoute>
             } />
           <Route path="/create-user" element={
-          <>
+          <PrivateRoute requiredRole="Admin">
               <Header />
               <CreateUser />
-              </>
+              </PrivateRoute>
           } />
           <Route path="/user-list" element={
             <PrivateRoute requiredRole="Admin">
