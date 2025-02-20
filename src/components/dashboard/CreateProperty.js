@@ -40,12 +40,11 @@ const CreateProperty = () => {
 
     try {
       const response = await fetch(
-        'https://proxy.cors.sh/' + encodeURIComponent(url), // Используем CORS Anywhere
+        'https://cors-anywhere.herokuapp.com/' + encodeURIComponent(url), // Используем CORS Anywhere
         {
-          method: 'GET',
-  mode: 'no-cors',
           headers: {
-  'x-cors-api-key': 'temp_bda4eb22526af6b51f5ccb732535d293'
+           'Origin': 'https://rukh-estate.vercel.app',
+            'X-Requested-With': 'XMLHttpRequest',
   },
         }
       );
