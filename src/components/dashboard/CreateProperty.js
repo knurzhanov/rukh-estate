@@ -39,32 +39,32 @@ const CreateProperty = () => {
     setIsLoading(true); // Устанавливаем состояние загрузки в true
 
     try {
-     const response = await fetch(
-  'https://cors-anywhere.herokuapp.com/' + url, // No need to encodeURIComponent here
+   const response = await fetch(
+  'https://cors-anywhere.herokuapp.com/' + url,
   {
-    method: 'GET', // Make sure the request method is defined (GET by default)
+    method: 'GET',
     headers: {
       'Origin': 'https://rukh-estate.vercel.app',
       'X-Requested-With': 'XMLHttpRequest',
- 
     },
   }
 );
-      
+
 const contentType = response.headers.get('Content-Type');
 
 if (contentType && contentType.includes('application/json')) {
-  // If the response is JSON, parse it
+  // If the response is JSON, parse it directly
   const data = await response.json();
   console.log(data);
 } else if (contentType && contentType.includes('text/html')) {
-  // If the response is HTML, treat it accordingly
+  // If the response is HTML, treat it as text
   const html = await response.text();
   console.log(html);
   // You could use a DOM parser or regex to extract specific information from the HTML
 } else {
   console.error('Unsupported response type:', contentType);
 }
+
       if (!response.ok) {
         throw new Error('Не успешный запрос');
       }
