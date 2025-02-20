@@ -46,7 +46,7 @@ const CreateProperty = () => {
     headers: {
       'Origin': 'https://rukh-estate.vercel.app',
       'X-Requested-With': 'XMLHttpRequest',
-      'Accept': 'application/json', // You can add this if the response is expected to be JSON
+ 
     },
   }
 );
