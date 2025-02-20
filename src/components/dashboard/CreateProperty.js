@@ -39,15 +39,17 @@ const CreateProperty = () => {
     setIsLoading(true); // Устанавливаем состояние загрузки в true
 
     try {
-      const response = await fetch(
-        'https://cors-anywhere.herokuapp.com/' + encodeURIComponent(url), // Используем CORS Anywhere
-        {
-          headers: {
-           'Origin': 'https://rukh-estate.vercel.app',
-            'X-Requested-With': 'XMLHttpRequest'
-  },
-        }
-      );
+     const response = await fetch(
+  'https://cors-anywhere.herokuapp.com/' + url, // No need to encodeURIComponent here
+  {
+    method: 'GET', // Make sure the request method is defined (GET by default)
+    headers: {
+      'Origin': 'https://rukh-estate.vercel.app',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Accept': 'application/json', // You can add this if the response is expected to be JSON
+    },
+  }
+);
       if (!response.ok) {
         throw new Error('Не успешный запрос');
       }
