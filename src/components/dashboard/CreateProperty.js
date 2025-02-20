@@ -42,6 +42,8 @@ const CreateProperty = () => {
       const response = await fetch(
         'https://proxy.cors.sh/' + encodeURIComponent(url), // Используем CORS Anywhere
         {
+          method: 'GET',
+  mode: 'no-cors',
           headers: {
   'x-cors-api-key': 'temp_bda4eb22526af6b51f5ccb732535d293'
   },
