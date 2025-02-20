@@ -40,7 +40,12 @@ const CreateProperty = () => {
 
     try {
       const response = await fetch(
-        'https://api.allorigins.win/get?url=' + encodeURIComponent(url)
+        'https://cors-anywhere.herokuapp.com/' + encodeURIComponent(url), // Используем CORS Anywhere
+        {
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest', // Нужно для корректной работы CORS Anywhere
+          },
+        }
       );
       if (!response.ok) {
         throw new Error('Не успешный запрос');
@@ -268,3 +273,6 @@ const CreateProperty = () => {
 };
 
 export default CreateProperty;
+
+
+
