@@ -19,7 +19,7 @@ const CreateProperty = () => {
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Добавляем состояние загрузки
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     setUrl(e.target.value);
@@ -36,27 +36,29 @@ const CreateProperty = () => {
       return;
     }
 
-    setIsLoading(true); // Устанавливаем состояние загрузки в true
+    setIsLoading(true);
 
     try {
-   const response = await fetch(
-  'https://cors-anywhere.herokuapp.com/' + url,
-  {
-    method: 'GET',
-    headers: {
-      'Origin': 'https://rukh-estate.vercel.app',
-      'X-Requested-With': 'XMLHttpRequest',
-    },
-  }
-);
-
+      const response = await fetch(
+        'https://api.allorigins.win/get?url=' + url,
+        {
+          method: 'GET',
+          headers: {
+            'Origin': 'https://rukh-estate.vercel.app',
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error('Не успешный запрос');
       }
 
       const json = await response.json();
-      const text = json.contents;
+      let text = json.contents;
+
+      // Очистка экранированных символов
+      text = text.replace(/\\"/g, '"').replace(/\\'/g, "'");
 
       const parser = new DOMParser();
       const doc = parser.parseFromString(text, 'text/html');
@@ -117,17 +119,8 @@ const CreateProperty = () => {
         images: [],
       });
     } finally {
-      setIsLoading(false); // Устанавливаем состояние загрузки в false
+      setIsLoading(false);
     }
-  };
-
-  useEffect(() => {
-    // Этот useEffect будет вызван после обновления data
-  }, [data]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetchData();
   };
 
   const handleAddToDb = async () => {
@@ -158,9 +151,9 @@ const CreateProperty = () => {
 
   return (
     <div className="App container">
-      <div className='create-template'>
+      <div className="create-template">
         <h2>Новое обьявление</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => { e.preventDefault(); fetchData(); }}>
           <div className="enterUrl">
             <label htmlFor="url">Введите URL:</label>
             <input
@@ -171,76 +164,76 @@ const CreateProperty = () => {
               placeholder="Введите URL"
             />
           </div>
-          <br></br>
+          <br />
           <button className="urlBtn" type="submit">
             Получить данные
           </button>
           {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
 
-        {isLoading ? ( // Отображаем спиннер, если данные загружаются
+        {isLoading ? (
           <div className="spinner">Загрузка...</div>
         ) : (
           <>
             <div>
-              <br></br>
-              <h2 className='h2--style'>Название:</h2>
+              <br />
+              <h2 className="h2--style">Название:</h2>
               <input
                 type="text"
                 name="title"
                 value={data.title}
                 onChange={handleInputChangeData}
               />
-              <h2 className='h2--style'>ЖК:</h2>
+              <h2 className="h2--style">ЖК:</h2>
               <input
                 type="text"
                 name="homeTitle"
                 value={data.homeTitle}
                 onChange={handleInputChangeData}
               />
-              <h2 className='h2--style'>Комнатность:</h2>
+              <h2 className="h2--style">Комнатность:</h2>
               <input
                 type="text"
                 name="roomCount"
                 value={data.roomCount}
                 onChange={handleInputChangeData}
               />
-              <h2 className='h2--style'>Площадь:</h2>
+              <h2 className="h2--style">Площадь:</h2>
               <input
                 type="text"
                 name="area"
                 value={data.area}
                 onChange={handleInputChangeData}
               />
-              <h2 className='h2--style'>Этаж:</h2>
+              <h2 className="h2--style">Этаж:</h2>
               <input
                 type="text"
                 name="floor"
                 value={data.floor}
                 onChange={handleInputChangeData}
               />
-              <h2 className='h2--style'>Всего этажей:</h2>
+              <h2 className="h2--style">Всего этажей:</h2>
               <input
                 type="text"
                 name="totalFloors"
                 value={data.totalFloors}
                 onChange={handleInputChangeData}
               />
-              <h2 className='h2--style'>Адрес:</h2>
+              <h2 className="h2--style">Адрес:</h2>
               <input
                 type="text"
                 name="address"
                 value={data.address}
                 onChange={handleInputChangeData}
               />
-              <h2 className='h2--style'>Цена:</h2>
+              <h2 className="h2--style">Цена:</h2>
               <input
                 type="text"
                 name="price"
                 value={data.price}
                 onChange={handleInputChangeData}
               />
-              <h2 className='h2--style'>Описание:</h2>
+              <h2 className="h2--style">Описание:</h2>
               <textarea
                 name="description"
                 value={data.description}
@@ -248,7 +241,7 @@ const CreateProperty = () => {
               />
             </div>
             <div>
-              <h2 className='h2--style'>Фото:</h2>
+              <h2 className="h2--style">Фото:</h2>
               <div id="images">
                 {data.images.length > 0 ? (
                   data.images.map((src, index) => (
@@ -267,8 +260,8 @@ const CreateProperty = () => {
           </>
         )}
 
-{success && <p style={{ color: 'green' }}>{success}</p>}
-        <button className='create--property_btn' onClick={handleAddToDb}>
+        {success && <p style={{ color: 'green' }}>{success}</p>}
+        <button className="create--property_btn" onClick={handleAddToDb}>
           Добавить в базу данных
         </button>
       </div>
@@ -277,6 +270,3 @@ const CreateProperty = () => {
 };
 
 export default CreateProperty;
-
-
-
