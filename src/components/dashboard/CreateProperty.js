@@ -41,13 +41,6 @@ const CreateProperty = () => {
     try {
       const response = await fetch(
         'https://api.allorigins.win/get?url=' + url,
-        {
-          method: 'GET',
-          headers: {
-            'Origin': 'https://rukh-estate.vercel.app',
-            'X-Requested-With': 'XMLHttpRequest',
-          },
-        }
       );
 
       if (!response.ok) {
